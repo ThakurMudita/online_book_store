@@ -1,0 +1,136 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Books API Example </title>
+  <link rel="stylesheet" href="searchbook.css">
+</head>
+
+<body>
+  <div class="head">
+    <h1>BOOK PICKS</h1>
+  </div>
+
+  <div class="container">
+    <h1 class="heading">SEARCH FOR BOOKS </h1>
+    <div>
+      <label for="searchInput">Search Books:</label>
+      <input type="text" id="searchInput" placeholder="Enter name of book">
+      <button id="searchButton">Search</button>
+    </div>
+
+    <div class="books-container" id="content"></div>
+  </div> -->
+
+  <!-- Modal to display book details -->
+  <!-- <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="bookImage" src="" alt="Book Image">
+      <div id="bookDetails"></div>
+      <button id="registerButton">Register</button>
+      <button id="paymentButton">Payment</button>
+    </div>
+  </div>
+
+  <script>
+    function handleResponse(response) {
+      var books = response.items;
+
+      for (var i = 0; i < books.length; i++) {
+        var book = books[i].volumeInfo;
+
+        var bookCard = document.createElement('div');
+        bookCard.classList.add('book');
+
+        bookCard.innerHTML = `
+          <h2>${book.title}</h2>
+          <p><strong>Language:</strong> ${book.language}</p>
+          <p><strong>Print Type:</strong> ${book.printType}</p>
+          <img src="${book.imageLinks.thumbnail}" alt="${book.title} thumbnail">
+        `;
+
+        // Create "Open Full Page" button for each book
+        var openButton = document.createElement('button');
+        openButton.textContent = 'Open Full Page';
+        openButton.classList.add('open-button');
+        openButton.dataset.index = i; // Store the index of the book for reference
+
+        openButton.addEventListener('click', function(event) {
+          var index = event.target.dataset.index;
+          var bookInfo = books[index].volumeInfo;
+          openFullPage(bookInfo);
+        });
+
+        bookCard.appendChild(openButton);
+
+        // Append the book card to the container
+        document.getElementById("content").appendChild(bookCard);
+      }
+    }
+
+    function searchBooks() {
+      var query = document.getElementById("searchInput").value;
+      var searchURL = `${BASE_URL}?q=${query}&${API_KEY}`;
+
+      fetch(searchURL)
+        .then(response => response.json())
+        .then(data => {
+          // Clear previous search results
+          document.getElementById("content").innerHTML = "";
+          // Handle the response data here
+          handleResponse(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    function openFullPage(bookInfo) {
+      // Display book details in a modal
+      var modal = document.getElementById("myModal");
+      var bookImage = document.getElementById("bookImage");
+      var bookDetails = document.getElementById("bookDetails");
+
+      bookImage.src = bookInfo.imageLinks.thumbnail;
+      bookDetails.innerHTML = `
+        <h2>${bookInfo.title}</h2>
+        <p><strong>Author(s):</strong> ${bookInfo.authors.join(', ')}</p>
+        <p><strong>Language:</strong> ${bookInfo.language}</p>
+        <p><strong>Print Type:</strong> ${bookInfo.printType}</p>
+        <p><strong>Description:</strong> ${bookInfo.description}</p>
+      `;
+
+      // Show modal
+      modal.style.display = "block";
+
+      // Close modal when the close button is clicked
+      var closeButton = document.getElementsByClassName("close")[0];
+      closeButton.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // Register button functionality (Placeholder)
+      var registerButton = document.getElementById("registerButton");
+      registerButton.onclick = function() {
+        console.log("Register button clicked");
+      }
+
+      // Payment button functionality (Placeholder)
+      var paymentButton = document.getElementById("paymentButton");
+      paymentButton.onclick = function() {
+        console.log("Payment button clicked");
+      }
+    }
+
+    const API_KEY = 'AIzaSyBQBDtXlk-6P-oU603XHmnXKeJZwM1L5ME';
+    const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
+
+    document.getElementById("searchButton").addEventListener("click", searchBooks);
+  </script>
+</body>
+
+</html> -->

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+
+#ab{
+position: absolute;
+/* min-width: 100vw; */
+min-height: 40vh;
+width: 100vw;
+top: 30%;
+}
+
+
+
+    .search-form{
+    padding: 2rem;
+    display: flex;
+    /* position: absolute;
+    top: 40%;
+    left: 25%; */
+    width: 50%;
+    margin: auto;
+}
+
+.search-form input{
+    font-size: 2rem;
+    padding: 0.5rem;
+    border: none;
+    border: 1px solid #089da1;
+    /* outline: 2px solid rgb(33, 33, 148); */
+   
+}
+
+.search-form button{
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #089da1;
+   padding: 0.5rem;
+}
+
+
+.gallery-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: grey;
+    padding: 0.5rem 0rem;
+}
+
+.gallery-info a{
+    color: grey;
+}
+
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    padding: 2rem 0rem;
+    width: 80%;
+    margin: auto;
+    row-gap: 5rem;
+    column-gap: 3rem;
+    /* coloum-gap :3rem; */
+    margin-bottom: 10rem;
+}
+
+
+.gallery-img{
+    height: 10rem;
+    width: 10rem;
+}
+
+
+
+.gallery-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+</style>
+
+</head>
+<body>
+    
+
+    <section>
+        <nav>
+
+            <div class="logo">
+                <img src="image/storytelling (1).png">
+            </div>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                
+                <li><a href="#ContactUs">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                
+            </ul>
+         
+        </nav>
+    </section>
+
+<div id="ab">
+
+    <header>
+        
+        <div  class="search-form">
+            <input type="text" id="search-input" name = 'search'>
+            <button type="submit" class="submit-button">SEARCH</button>
+        </div>
+    </header>
+    
+    <main>
+        <div class="gallery">
+      
+        </div>
+    </main>
+
+
+
+    
+    
+
+
+
+
+    <footer>
+        <div class="footer_main">
+    
+            <div class="tag">
+                <img src="image/storytelling (1).png">
+                <br>
+                <br>
+                <p>
+                    "Books are a uniquely portable magic." - Stephen King
+                </p>
+                
+            </div>
+            
+            <div class="tag">
+                <h1>Quick Link</h1>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Featured</a>
+                <a href="#">Arrivals</a>
+                <a href="#">Reviews</a>
+                <!-- <a href="#">Blog</a> -->
+                
+            </div>
+    
+            <div class="tag" id="ContactUs">
+                <h1>Contact Info</h1>
+                <a href="#"><i class="fa-solid fa-phone"></i>+91 6393439503</a>
+                <a href="#"><i class="fa-solid fa-phone"></i>+91 9315370543</a>
+                <a href="#"><i class="fa-solid fa-phone"></i>+91 8295050923</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i>bookstore123@gmail.com</a>
+                
+            </div>
+            
+            <div class="tag">
+                <h1>Follow Us</h1>
+                <div class="social_link">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+                
+            </div>
+    
+            <div class="tag">
+                <h1>Newsletter</h1>
+                <div class="search_bar">
+                    <input type="text" placeholder="You email id here">
+                    <button type="submit">Subscribe</button>
+                </div>                
+            </div>            
+            
+        </div>
+    
+        <!-- <p class="end">Design By<span><i class="fa-solid fa-face-grin"></i> WT Master Code</span></p> -->
+    
+    </footer>
+    
+
+</div>
+
+    <script>
+     
+
+     async function searchBooks(){
+
+            var query = document.getElementById("search-input").value;
+            var searchURL = `${BASE_URL}?q=${query}&${API_KEY}`;
+           const data = await fetch(searchURL);
+           const jsonData = await data.json();
+           console.log(jsonData);
+           var books = jsonData.items;
+
+
+           
+           
+           for (var i = 0; i < books.length; i++){
+               
+               var book = books[i].volumeInfo;
+
+            const galleryImg = document.createElement('div');
+    galleryImg.classList.add('gallery-img');
+    
+    galleryImg.innerHTML = `
+    <img src = ${book.imageLinks.thumbnail}></img>
+  <div>
+    <p>${book.title}</p>
+    <p><a href= ${book.previewLink
+} >TRY Now</a></p>
+    </div>
+
+    `
+    // console.log();
+    galley.appendChild(galleryImg);
+    
+
+
+       
+
+
+
+
+
+
+
+
+
+}   
+
+
+
+}
+    
+        // function searchBooks() {
+        //   fetch(searchURL)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log(data);
+        //       // Clear previous search results
+        //       document.getElementById("content").innerHTML = "";
+        //       // Handle the response data here
+        //       handleResponse(data);
+        //     })
+        //     .catch(error => {
+        //       console.error('Error:', error);
+        //     });
+        // }
+
+
+
+
+
+    
+        const API_KEY = 'AIzaSyBQBDtXlk-6P-oU603XHmnXKeJZwM1L5ME';
+        const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
+    
+        document.querySelector(".submit-button").addEventListener("click", searchBooks);
+        const galley = document.querySelector('.gallery');
+      </script>
+
+
+
+</body>
+</html>
